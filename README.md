@@ -6,6 +6,7 @@ file format used by [SAT solvers][sat-solving].
 - No `unsafe` Rust!
 - No dependencies!
 - No heap allocations while parsing!
+- `no_std` compatible!
 
 ## Usage
 
