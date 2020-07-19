@@ -9,7 +9,7 @@ repository = "https://github.com/robbepop/cnf-parser"
 documentation = "https://docs.rs/cnf-parser"
 keywords = ["sat", "satisfiability", "cnf", "parser"]
 description = """Efficient and customizable CNF parser for SAT solving."""
-categories = ["parser"]
+categories = ["parsing"]
 
 [features]
 default = ["std"]
