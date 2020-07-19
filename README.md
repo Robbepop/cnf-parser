@@ -1,8 +1,8 @@
 # CNF Parser
 
-|  Documentation   |       Crates.io      |
-|:----------------:|:--------------------:|
-| [![docs][1]][2] | [![crates][3]][4]  |
+| Continuous Integration |  Documentation   |       Crates.io      |
+|:----------------------:|:----------------:|:--------------------:|
+| [![CI][1]][2]          | [![docs][3]][4] | [![crates][5]][6]  |
 
 An efficient and customizable parser for the [`.cnf` (Conjunctive Normal Form)][cnf-format]
 file format used by [SAT solvers][sat-solving].
@@ -85,10 +85,12 @@ Unless you explicitly state otherwise, any contribution intentionally submitted
 for inclusion in the work by you, as defined in the Apache-2.0 license, shall be dual licensed as above, without any
 additional terms or conditions.
 
-[1]: https://docs.rs/cnf-parser/badge.svg
-[2]: https://docs.rs/cnf-parser
-[3]: https://img.shields.io/crates/v/cnf-parser.svg
-[4]: https://crates.io/crates/cnf-parser
+[1]: https://github.com/Robbepop/cnf-parser/workflows/Rust%20-%20Continuous%20Integration/badge.svg?branch=master
+[2]: https://github.com/Robbepop/cnf-parser/actions?query=workflow%3A%22Rust+-+Continuous+Integration%22+branch%3Amaster
+[3]: https://docs.rs/cnf-parser/badge.svg
+[4]: https://docs.rs/cnf-parser
+[5]: https://img.shields.io/crates/v/cnf-parser.svg
+[6]: https://crates.io/crates/cnf-parser
 
 [sat-solving]: https://en.wikipedia.org/wiki/Boolean_satisfiability_problem
 [cnf-format]: https://www.cs.utexas.edu/users/moore/acl2/manuals/current/manual/index-seo.php/SATLINK____DIMACS
