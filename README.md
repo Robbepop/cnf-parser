@@ -1,5 +1,9 @@
 # CNF Parser
 
+|  Documentation   |       Crates.io      |
+|:----------------:|:--------------------:|
+| [![docs][1]][2] | [![crates][3]][4]  |
+
 An efficient and customizable parser for the [`.cnf` (Conjunctive Normal Form)][cnf-format]
 file format used by [SAT solvers][sat-solving].
 
@@ -81,5 +85,13 @@ Unless you explicitly state otherwise, any contribution intentionally submitted
 for inclusion in the work by you, as defined in the Apache-2.0 license, shall be dual licensed as above, without any
 additional terms or conditions.
 
+[1]: https://docs.rs/cnf-parser/badge.svg
+[2]: https://docs.rs/cnf-parser
+[3]: https://img.shields.io/crates/v/cnf-parser.svg
+[4]: https://crates.io/crates/cnf-parser
+
 [sat-solving]: https://en.wikipedia.org/wiki/Boolean_satisfiability_problem
 [cnf-format]: https://www.cs.utexas.edu/users/moore/acl2/manuals/current/manual/index-seo.php/SATLINK____DIMACS
+
+[license-mit-badge]: https://img.shields.io/badge/license-MIT-blue.svg
+[license-apache-badge]: https://img.shields.io/badge/license-APACHE-orange.svg
