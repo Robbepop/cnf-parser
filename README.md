@@ -33,22 +33,31 @@ pub struct MyOutput {
 
 impl Output for MyOutput {
     type Error = &'static str;
-    fn problem(&mut self, num_variables: u32, num_clauses: u32) -> Result<(), Self::Error> {
+
+    fn problem(
+        &mut self, num_variables: u32, num_clauses: u32
+    ) -> Result<(), Self::Error> {
         Ok(())
     }
+
     fn literal(&mut self, literal: Literal) -> Result<(), Self::Error> {
         self.head_clause.push(literal); Ok(())
     }
+
     fn finalize_clause(&mut self) -> Result<(), Self::Error> {
-        self.clauses.push(
-            core::mem::replace(&mut self.head_clause, Vec::new())
-        ); Ok(())
-    }
-    fn finish(&mut self) -> Result<(), Self::Error> {
-        if !self.head_clause.is_empty() {
+        if self.head_clause.is_empty() {
             return Err("encountered empty clause")
         }
-        self.finalize_clause();
+        self.clauses.push(
+            core::mem::replace(&mut self.head_clause, Vec::new())
+        );
+        Ok(())
+    }
+
+    fn finish(&mut self) -> Result<(), Self::Error> {
+        if !self.head_clause.is_empty() {
+            self.finalize_clause()?
+        }
         Ok(())
     }
 }
