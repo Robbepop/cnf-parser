@@ -19,14 +19,6 @@
 //!     clauses: Vec<Vec<Literal>>,
 //! }
 //!
-//! impl MyOutput {
-//!     fn finalize_clause(&mut self) {
-//!         self.clauses.push(
-//!             core::mem::replace(&mut self.head_clause, Vec::new())
-//!         );
-//!     }
-//! }
-//!
 //! impl Output for MyOutput {
 //!     type Error = &'static str;
 //!
@@ -39,14 +31,18 @@
 //!     }
 //!
 //!     fn finalize_clause(&mut self) -> Result<(), Self::Error> {
+//!         if self.head_clause.is_empty() {
+//!             return Err("encountered empty clause")
+//!         }
 //!         self.clauses.push(
 //!             core::mem::replace(&mut self.head_clause, Vec::new())
-//!         ); Ok(())
+//!         );
+//!         Ok(())
 //!     }
 //!
 //!     fn finish(&mut self) -> Result<(), Self::Error> {
 //!         if !self.head_clause.is_empty() {
-//!             return Err("encountered empty clause")
+//!             self.finalize_clause()?
 //!         }
 //!         Ok(())
 //!     }
