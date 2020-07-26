@@ -246,6 +246,7 @@ fn regression_empty_comment() {
 }
 
 #[test]
+#[rustfmt::skip]
 fn test_3sat_cnf() {
     let sample = br"
         p cnf 10 4
