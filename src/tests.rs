@@ -230,3 +230,17 @@ fn problem_num_clauses_out_of_bounds() {
         })
     );
 }
+
+#[test]
+fn regression_empty_comment() {
+    let sample = br"
+        c The next comment is empty and the newline directly following the 'c'.
+        c The regression we test here was that the next line was skipped.
+        c
+        p cnf 2 3
+    ";
+    let mut output = StubOutput::default();
+    parse_cnf(&mut sample.as_ref(), &mut output).unwrap();
+    assert_eq!(output.num_variables(), Some(2));
+    assert_eq!(output.num_clauses(), Some(3));
+}
