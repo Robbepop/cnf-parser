@@ -244,3 +244,24 @@ fn regression_empty_comment() {
     assert_eq!(output.num_variables(), Some(2));
     assert_eq!(output.num_clauses(), Some(3));
 }
+
+#[test]
+fn test_3sat_cnf() {
+    let sample = br"
+        p cnf 10 4
+        1 3 5 0
+        -2 -8 6 0
+        -4 -8 -1 0
+        -10 -7 -2 0
+    ";
+    let mut output = StubOutput::default();
+    parse_cnf(&mut sample.as_ref(), &mut output).unwrap();
+    assert_eq!(output.num_variables(), Some(10));
+    assert_eq!(output.num_clauses(), Some(4));
+    output.assert_clauses(&[
+        &[1, 3, 5],
+        &[-2, -8, 6],
+        &[-4, -8, -1],
+        &[-10, -7, -2]
+    ]);
+}
