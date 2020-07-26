@@ -274,19 +274,31 @@ where
         Ok(problem)
     }
 
+    fn skip_until_next_line(&mut self) {
+        'skip: loop {
+            match self.reader.peek_byte() {
+                Some(b'\n') | None => break 'skip,
+                _ => self.reader.skip_byte(),
+            }
+        }
+    }
+
     fn skip_comment(&mut self) -> Result<(), Error<<O as Output>::Error>> {
         debug_assert_eq!(self.reader.peek_byte(), Some(b'c'));
         self.reader.skip_byte();
-        self.skip_expected_whitespace()?;
-        'skip: loop {
-            match self.reader.peek_byte() {
-                None | Some(b'\n') => return Ok(()),
-                Some(_other) => {
-                    self.reader.skip_byte();
-                    continue 'skip
-                }
-            }
+        if self
+            .reader
+            .peek_byte()
+            .map(|byte| !byte.is_ascii_whitespace())
+            .unwrap_or_else(|| false)
+        {
+            return Err(Error::ExpectedWhitespace {
+                at: self.reader.current_position(),
+                encountered: self.reader.peek_byte(),
+            })
         }
+        self.skip_until_next_line();
+        Ok(())
     }
 
     fn parse_end_clause(&mut self) -> Result<Token, Error<<O as Output>::Error>> {
